@@ -1,5 +1,6 @@
 from fastapi import FastAPI, File, UploadFile, Request
 from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
 import os
 import numpy as np
 from pathlib import Path
@@ -24,7 +25,7 @@ templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Model saved with Keras model.save()
-MODEL_PATH =  os.path.join(BASE_DIR, 'ReFineTuned98.h5')
+MODEL_PATH =  os.path.join(BASE_DIR, 'ReTrained98.h5')
 
 # Load your trained model
 import tensorflow as tf
@@ -64,7 +65,6 @@ def model_predict(img_path, model):
         preds = "Tomato___mosaic_virus"
     elif preds == 9:
         preds = "Tomato__healthy"   
-    print(preds)
     return preds
 
 
